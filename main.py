@@ -3,8 +3,8 @@
 
 import re
 
-file_name_to_open = "test.log"
-file_name_to_write = "evil2.csv"
+file_name_to_open = "data1.log"
+file_name_to_write = "result1.csv"
 
 if __name__ == '__main__':
     REF_length = None
@@ -167,9 +167,9 @@ if __name__ == '__main__':
                     x_flag = 1
                     # print("REF,{},{},,{},,,,,".format(REF_length, REF_privacy_sum, REF_times_of_turning_off_camera,
                     #                                   REF_times_of_intrusion))
-                    csv_file.write("REF,{},{},,{},,,,,\n".format(REF_length, REF_privacy_sum,
-                                                                 REF_times_of_turning_off_camera,
-                                                                 REF_times_of_intrusion))
+                    # csv_file.write("REF,{},{},,{},,,,,\n".format(REF_length, REF_privacy_sum,
+                    #                                              REF_times_of_turning_off_camera,
+                    #                                              REF_times_of_intrusion))
                     # print("Hybrid,{},{},{},{},{},{},,,".format(length, privacy_sum, times_of_turning_off_camera,
                     #                                            times_of_intrusion, times_of_replanning,
                     #                                            exploration_rate))
@@ -274,9 +274,9 @@ if __name__ == '__main__':
                     x_flag = 2
                     # print("REF,{},{},,{},,,,,".format(REF_length, REF_privacy_sum, REF_times_of_turning_off_camera,
                     #                                   REF_times_of_intrusion))
-                    csv_file.write("REF,{},{},,{},,,,,\n".format(REF_length, REF_privacy_sum,
-                                                                 REF_times_of_turning_off_camera,
-                                                                 REF_times_of_intrusion))
+                    # csv_file.write("REF,{},{},,{},,,,,\n".format(REF_length, REF_privacy_sum,
+                    #                                              REF_times_of_turning_off_camera,
+                    #                                              REF_times_of_intrusion))
                     # print("SC,{},{},{},{},{},{},,,".format(length, privacy_sum, times_of_turning_off_camera,
                     #                                            times_of_intrusion, times_of_replanning,
                     #                                            exploration_rate))
@@ -382,9 +382,9 @@ if __name__ == '__main__':
                     x_flag = 3
                     # print("REF,{},{},,{},,,,,".format(REF_length, REF_privacy_sum, REF_times_of_turning_off_camera,
                     #                                   REF_times_of_intrusion))
-                    csv_file.write("REF,{},{},,{},,,,,\n".format(REF_length, REF_privacy_sum,
-                                                                 REF_times_of_turning_off_camera,
-                                                                 REF_times_of_intrusion))
+                    # csv_file.write("REF,{},{},,{},,,,,\n".format(REF_length, REF_privacy_sum,
+                    #                                              REF_times_of_turning_off_camera,
+                    #                                              REF_times_of_intrusion))
                     # print("PP,{},{},{},{},{},{},,,".format(length, privacy_sum, times_of_turning_off_camera,
                     #                                        times_of_intrusion, times_of_replanning,
                     #                                        exploration_rate))
