@@ -4,7 +4,7 @@
 import re
 
 file_name_to_open = "data3.log"
-file_name_to_write = "rslt3.csv"
+file_name_to_write = "rslt.csv"
 
 if __name__ == '__main__':
     REF_length = None
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     x_flag = 0
 
     with open(file_name_to_open, 'r') as log_file:
-        with open(file_name_to_write, "w+") as csv_file:
+        with open(file_name_to_write, "w") as csv_file:
             for line in log_file:
                 # 匹配如下内容：
                 # [2019-06-25 11:30:19,322] MainFunc.py-><module> line:80
