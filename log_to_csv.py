@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+# 将log文件转换为rslt.csv，便于csv_parser.py处理
 
 import re
 

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-# 这个文件的主要目标是将log_to_csv.py生成的csv文件内的hybrid行，pp行，以及sc行提取出来
-# 然后分到三个文件里面，便于后续处理
+# 这个文件的主要目标是将log_to_csv.py生成的rslt.csv文件内的hybrid行，pp行，以及sc行提取出来
+# 然后分到三个文件里面，便于static_average.py处理
 
 import re
 
