@@ -4,7 +4,7 @@
 
 import re
 
-file_name_to_open = "data3.log"
+file_name_to_open = "test.log"
 file_name_to_write = "rslt.csv"
 
 if __name__ == '__main__':
@@ -26,48 +26,49 @@ if __name__ == '__main__':
     # 2：输出SC
     # 3：输出PP
     x_flag = 0
-
     with open(file_name_to_open, 'r') as log_file:
         with open(file_name_to_write, "w") as csv_file:
             for line in log_file:
                 # 匹配如下内容：
-                # [2019-06-25 11:30:19,322] MainFunc.py-><module> line:80
-                # [INFO]Iteration: 1; Configuration: grid: 10, safety_threshold: 0.300000, privacy_threshold: 0.100000,
-                # the starting point: [0, 0, 0]; the end point: [9, 9, 9]; T_budget(alpha): 40.500000 (1.500000);
-                # T_optimal(beta): 33.750000 (1.250000); Exploration_rate: 0.000000; Preference: 1000.000000
-                pattern = re.compile(r'.*MainFunc.py.*Iteration:.*; Configuration: grid: (\d+), '
+                # [2019-06-27 13:40:41,424] MainFunc-exploration.py-><module> line:102
+                # [INFO]Iteration: 1; Configuration: grid: 10, safety_threshold: 0.300000,
+                # privacy_threshold: 0.100000, the starting point: [0, 0, 0]; the end point: [9, 9, 9];
+                # T_budget(alpha): 36.000000 (1.333333); T_optimal(beta): 31.500000 (1.166667);
+                # Exploration_rate: 0.000000; Preference: 1.000000; View_radius: 2.500000
+                pattern = re.compile(r'.*MainFunc.*Iteration:.*; Configuration: grid: (\d+), '
                                      r'safety_threshold: (\d+.\d+), privacy_threshold: (\d+.\d+), '
                                      r'the starting point: \[(\d+), (\d+), (\d+)\]; '
                                      r'the end point: \[(\d+), (\d+), (\d+)\]; '
                                      r'T_budget\(alpha\): (\d+.\d+) .*; T_optimal\(beta\): (\d+.\d+).*; '
                                      r'Exploration_rate: (\d+.\d+); '
-                                     r'Preference: (\d+.\d+).*')
+                                     r'Preference: (\d+.\d+); View_radius: (\d+.\d+).*')
                 result = pattern.findall(line)
                 if result:
                     if x_flag != 0:
-                        # print(",,,,,,,,,,,")
-                        csv_file.write(",,,,,,,,,,,\n")
+                        # print(",,,,,,,,,,,,")
+                        csv_file.write(",,,,,,,,,,,,\n")
                     x_flag = 0
                     # print("gridX,girdY,girdZ,safety_threshold,privacy_threshold,"
                     #       "starting_point,end_point,idealtime,T_budget,T_optimal,Exploration rate,"
-                    #       "Preference")
+                    #       "Preference,View radius")
                     csv_file.write("gridX,girdY,girdZ,safety_threshold,privacy_threshold,"
                                    "starting_point,end_point,idealtime,T_budget,T_optimal,Exploration rate,"
-                                   "Preference\n")
+                                   "Preference,View radius\n")
                     result = result[0]
                     # print("{},{},{},{},{},\"{},{},{}\","
-                    #       "\"{},{},{}\",{},{},{},{},{}".format(result[0], result[0], result[0], result[1], result[2],
-                    #                                            result[3], result[4], result[5], result[6], result[7],
-                    #                                            result[8], (int(result[0]) - 1) * 3, result[9],
-                    #                                            result[10], result[11], result[12]))
+                    #       "\"{},{},{}\",{},{},{},{},{},{}".format(result[0], result[0], result[0], result[1], result[2],
+                    #                                               result[3], result[4], result[5], result[6], result[7],
+                    #                                               result[8], (int(result[0]) - 1) * 3, result[9],
+                    #                                               result[10], result[11], result[12], result[13]))
                     csv_file.write("{},{},{},{},{},\"{},{},{}\","
-                                   "\"{},{},{}\",{},{},{},{},{}\n".format(result[0], result[0], result[0], result[1],
-                                                                          result[2], result[3], result[4], result[5],
-                                                                          result[6], result[7], result[8],
-                                                                          (int(result[0])-1)*3, result[9],result[10],
-                                                                          result[11], result[12]))
-                    # print(",,,,,,,,,,,")
-                    csv_file.write(",,,,,,,,,,,\n")
+                                   "\"{},{},{}\",{},{},{},{},{},{}\n".format(result[0], result[0], result[0], result[1],
+                                                                             result[2], result[3], result[4], result[5],
+                                                                             result[6], result[7], result[8],
+                                                                             (int(result[0])-1)*3, result[9],
+                                                                             result[10], result[11],
+                                                                             result[12], result[13]))
+                    # print(",,,,,,,,,,,,")
+                    csv_file.write(",,,,,,,,,,,,\n")
 
                 # 匹配如下内容：
                 # [2019-06-23 12:18:30,760] HybridPlanningOnline.py->Astar_Hybrid_Planning_online line:665
@@ -160,23 +161,23 @@ if __name__ == '__main__':
                     exploration_rate = result[0]
                     if x_flag != 1:
                         if x_flag != 0:
-                            # print(",,,,,,,,,,,")
-                            csv_file.write(",,,,,,,,,,,\n")
+                            # print(",,,,,,,,,,,,")
+                            csv_file.write(",,,,,,,,,,,,\n")
                         # print(",Length,PR,turn off camera,Intrudsion,replan times,exploration rate,,,")
                         csv_file.write(",Length,PR,turn off camera,Intrudsion,replan times,exploration rate,,,,,,\n")
                     x_flag = 1
-                    # print("REF,{},{},,{},,,,,,,".format(REF_length, REF_privacy_sum, REF_times_of_turning_off_camera,
-                    #                                     REF_times_of_intrusion))
-                    # csv_file.write("REF,{},{},,{},,,,,,,\n".format(REF_length, REF_privacy_sum,
-                    #                                                REF_times_of_turning_off_camera,
-                    #                                                REF_times_of_intrusion))
-                    # print("Hybrid,{},{},{},{},{},{},,,,,".format(length, privacy_sum, times_of_turning_off_camera,
-                    #                                              times_of_intrusion, times_of_replanning,
-                    #                                              exploration_rate))
-                    csv_file.write("Hybrid,{},{},{},{},{},{},,,,,\n".format(length, privacy_sum,
-                                                                            times_of_turning_off_camera,
-                                                                            times_of_intrusion, times_of_replanning,
-                                                                            exploration_rate))
+                    # print("REF,{},{},,{},,,,,,,,".format(REF_length, REF_privacy_sum, REF_times_of_turning_off_camera,
+                    #                                      REF_times_of_intrusion))
+                    # csv_file.write("REF,{},{},,{},,,,,,,,\n".format(REF_length, REF_privacy_sum,
+                    #                                                 REF_times_of_turning_off_camera,
+                    #                                                 REF_times_of_intrusion))
+                    # print("Hybrid,{},{},{},{},{},{},,,,,,".format(length, privacy_sum, times_of_turning_off_camera,
+                    #                                               times_of_intrusion, times_of_replanning,
+                    #                                               exploration_rate))
+                    csv_file.write("Hybrid,{},{},{},{},{},{},,,,,,\n".format(length, privacy_sum,
+                                                                             times_of_turning_off_camera,
+                                                                             times_of_intrusion, times_of_replanning,
+                                                                             exploration_rate))
                 # 匹配如下内容：
                 # [2019-06-23 12:21:37,778] SensorConfigOnline.py->Astar_Sensor_Config_online line:523
                 # [INFO]Online_Sensor_Config: Length of replanned trajectory: 27
@@ -267,22 +268,22 @@ if __name__ == '__main__':
                     exploration_rate = result[0]
                     if x_flag != 2:
                         if x_flag != 0:
-                            # print(",,,,,,,,,,,")
-                            csv_file.write(",,,,,,,,,,,\n")
+                            # print(",,,,,,,,,,,,")
+                            csv_file.write(",,,,,,,,,,,,\n")
                         # print(",Length,PR,turn off camera,Intrudsion,replan times,exploration rate,,,")
                         csv_file.write(",Length,PR,turn off camera,Intrudsion,replan times,exploration rate,,,,,,\n")
                     x_flag = 2
-                    # print("REF,{},{},,{},,,,,,,".format(REF_length, REF_privacy_sum, REF_times_of_turning_off_camera,
-                    #                                     REF_times_of_intrusion))
-                    # csv_file.write("REF,{},{},,{},,,,,,,\n".format(REF_length, REF_privacy_sum,
-                    #                                                REF_times_of_turning_off_camera,
-                    #                                                REF_times_of_intrusion))
-                    # print("SC,{},{},{},{},{},{},,,,,".format(length, privacy_sum, times_of_turning_off_camera,
-                    #                                          times_of_intrusion, times_of_replanning,
-                    #                                          exploration_rate))
-                    csv_file.write("SC,{},{},{},{},{},{},,,,,\n".format(length, privacy_sum, times_of_turning_off_camera,
-                                                                        times_of_intrusion, times_of_replanning,
-                                                                        exploration_rate))
+                    # print("REF,{},{},,{},,,,,,,,".format(REF_length, REF_privacy_sum, REF_times_of_turning_off_camera,
+                    #                                      REF_times_of_intrusion))
+                    # csv_file.write("REF,{},{},,{},,,,,,,,\n".format(REF_length, REF_privacy_sum,
+                    #                                                 REF_times_of_turning_off_camera,
+                    #                                                 REF_times_of_intrusion))
+                    # print("SC,{},{},{},{},{},{},,,,,,".format(length, privacy_sum, times_of_turning_off_camera,
+                    #                                           times_of_intrusion, times_of_replanning,
+                    #                                           exploration_rate))
+                    csv_file.write("SC,{},{},{},{},{},{},,,,,,\n".format(length, privacy_sum, times_of_turning_off_camera,
+                                                                         times_of_intrusion, times_of_replanning,
+                                                                         exploration_rate))
 
                 # 匹配如下内容：
                 # [2019-06-23 12:25:57,585] PathPlanningOnline.py->Astar_Path_Planning_online line:633
@@ -380,15 +381,16 @@ if __name__ == '__main__':
                         # print(",Length,PR,turn off camera,Intrudsion,replan times,exploration rate,,,")
                         csv_file.write(",Length,PR,turn off camera,Intrudsion,replan times,exploration rate,,,\n")
                     x_flag = 3
-                    # print("REF,{},{},,{},,,,,,,".format(REF_length, REF_privacy_sum, REF_times_of_turning_off_camera,
-                    #                                     REF_times_of_intrusion))
-                    # csv_file.write("REF,{},{},,{},,,,,,,\n".format(REF_length, REF_privacy_sum,
-                    #                                                REF_times_of_turning_off_camera,
-                    #                                                REF_times_of_intrusion))
-                    # print("PP,{},{},{},{},{},{},,,,,".format(length, privacy_sum, times_of_turning_off_camera,
-                    #                                          times_of_intrusion, times_of_replanning,
-                    #                                          exploration_rate))
-                    csv_file.write("PP,{},{},{},{},{},{},,,,,\n".format(length, privacy_sum,
-                                                                        times_of_turning_off_camera,
-                                                                        times_of_intrusion, times_of_replanning,
-                                                                        exploration_rate))
+                    # print("REF,{},{},,{},,,,,,,,".format(REF_length, REF_privacy_sum, REF_times_of_turning_off_camera,
+                    #                                      REF_times_of_intrusion))
+                    # csv_file.write("REF,{},{},,{},,,,,,,,\n".format(REF_length, REF_privacy_sum,
+                    #                                                 REF_times_of_turning_off_camera,
+                    #                                                 REF_times_of_intrusion))
+                    # print("PP,{},{},{},{},{},{},,,,,,".format(length, privacy_sum, times_of_turning_off_camera,
+                    #                                           times_of_intrusion, times_of_replanning,
+                    #                                           exploration_rate))
+                    csv_file.write("PP,{},{},{},{},{},{},,,,,,\n".format(length, privacy_sum,
+                                                                         times_of_turning_off_camera,
+                                                                         times_of_intrusion, times_of_replanning,
+                                                                         exploration_rate))
+    print("The log to csv finished.")
