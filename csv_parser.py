@@ -15,6 +15,12 @@ if __name__ == '__main__':
             open(hybrid_csv_file_name, "w") as output_hybrid_file, \
             open(pp_csv_file_name, "w") as output_pp_file, \
             open(sc_csv_file_name, "w") as output_sc_file:
+        output_hybrid_file.write(",Length,PR,PR_known,turn off camera,Intrusion,Intrusion_known,replan times,"
+                                 "No solution times,flag 1 times,flag 2 times,flag 3 times,exploration rate\n")
+        output_sc_file.write(",Length,PR,PR_known,turn off camera,Intrusion,Intrusion_known,"
+                             "replan times,exploration rate,,,,\n")
+        output_pp_file.write(",Length,PR,PR_known,turn off camera,Intrusion,Intrusion_known,replan times,"
+                             "No solution times,flag 1 times,flag 2 times,flag 3 times,exploration rate\n")
         for line in input_csv_file:
             # 处理Hybrid行
             pattern = re.compile(r'Hybrid.*')
@@ -39,3 +45,5 @@ if __name__ == '__main__':
                 result = result[0]
                 # print(result)
                 output_sc_file.write(result+'\n')
+
+        print("csv parser process finished.")
