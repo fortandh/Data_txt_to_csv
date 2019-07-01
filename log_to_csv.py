@@ -90,10 +90,10 @@ if __name__ == '__main__':
                 # 匹配如下内容：
                 # [2019-06-30 17:22:42,293] HybridPlanning_SA.py->Astar_Hybrid_Planning_online line:693
                 # [INFO]Online_Hybrid_Planning: No solution for local planning: from [3, 9, 2] to [6, 9, 2].
-                # No soultion flag is 1, PR for PP is 81.413976. length of PP is 3, T plan optimal is 7
+                # No solution flag is 1, PR for PP is 81.413976. length of PP is 3, T plan optimal is 7
                 pattern = re.compile(r'.*HybridPlanning.*Online_Hybrid_Planning: '
                                      r'No solution for local planning: .*'
-                                     r'No soultion flag is (\d+).*')
+                                     r'No solution flag is (\d+).*')
                 result = pattern.findall(line)
                 if result:
                     result = result[0]
