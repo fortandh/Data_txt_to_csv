@@ -21,10 +21,12 @@ if __name__ == '__main__':
         record_list = []
         if command_mode == "test":
             print(",Length,PR,PR_known,turn off camera,Intrusion,Intrusion_known,replan times,"
-                  "No solution times,flag 1 times,flag 2 times,flag 3 times,exploration rate")
+                  "No solution times,flag 1 times,flag 2 times,flag 3 times,exploration rate,"
+                  "failure rate")
         else:
             output_file.write(",Length,PR,PR_known,turn off camera,Intrusion,Intrusion_known,replan times,"
-                              "No solution times,flag 1 times,flag 2 times,flag 3 times,exploration rate\n")
+                              "No solution times,flag 1 times,flag 2 times,flag 3 times,exploration rate,"
+                              "failure rate\n")
         for line in input_file:
             # 匹配如下内容：
             # Hybrid,27,145.777165,145.777165,5,12,12,3,0,4,0,0,0.220000
@@ -51,6 +53,7 @@ if __name__ == '__main__':
                     times_of_flag_2_average = 0
                     times_of_flag_3_average = 0
                     exploration_rate_average = 0
+                    failure_rate_average = 0
 
                     for i in range(len(record_list)):
                         length_average += record_list[i].length
@@ -65,6 +68,7 @@ if __name__ == '__main__':
                         times_of_flag_2_average += record_list[i].times_of_flag_2
                         times_of_flag_3_average += record_list[i].times_of_flag_3
                         exploration_rate_average += record_list[i].exploration_rate
+                        failure_rate_average += record_list[i].failure_rate
 
                     length_average /= group_size
                     PR_average /= group_size
@@ -78,19 +82,20 @@ if __name__ == '__main__':
                     times_of_flag_2_average /= group_size
                     times_of_flag_3_average /= group_size
                     exploration_rate_average /= group_size
+                    failure_rate_average /= group_size
 
                     if command_mode == "test":
                         print("Average,{},{},{},{},{},"
-                              "{},{},{},{},{},{},{}".format(length_average, PR_average, PR_known_average,
-                                                            times_of_turning_off_camera_average,
-                                                            times_of_intrusion_average,
-                                                            times_of_intrusion_known_average,
-                                                            times_of_replanning_average,
-                                                            times_of_no_solution_average, times_of_flag_1_average,
-                                                            times_of_flag_2_average, times_of_flag_3_average,
-                                                            exploration_rate_average))
+                              "{},{},{},{},{},{},{},{}".format(length_average, PR_average, PR_known_average,
+                                                               times_of_turning_off_camera_average,
+                                                               times_of_intrusion_average,
+                                                               times_of_intrusion_known_average,
+                                                               times_of_replanning_average,
+                                                               times_of_no_solution_average, times_of_flag_1_average,
+                                                               times_of_flag_2_average, times_of_flag_3_average,
+                                                               exploration_rate_average, failure_rate_average))
                     else:
-                        output_file.write("Average,{},{},{},{},{},"
+                        output_file.write("Average,{},{},{},{},{},{},"
                                           "{},{},{},{},{},{},{}\n".format(length_average, PR_average, PR_known_average,
                                                                           times_of_turning_off_camera_average,
                                                                           times_of_intrusion_average,
@@ -100,6 +105,7 @@ if __name__ == '__main__':
                                                                           times_of_flag_1_average,
                                                                           times_of_flag_2_average,
                                                                           times_of_flag_3_average,
-                                                                          exploration_rate_average))
+                                                                          exploration_rate_average,
+                                                                          failure_rate_average))
                     record_list = []
         print("Hybrid average process finished.")
