@@ -29,8 +29,8 @@ if __name__ == '__main__':
         for line in input_file:
             # 匹配如下内容：
             # PP,35,33.111192,27.264731,0,15,13,5,5,0,0,0,0.220000,1
-            pattern = re.compile(r'.*,(\d+),(\d+.\d+),(\d+.\d+),(\d+),(\d+),'
-                                 r'(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+.\d+),(\d+\.?\d*).*')
+            pattern = re.compile(r'.*,(\d+),(\d+\.\d+),(\d+\.\d+),(\d+),(\d+),'
+                                 r'(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+\.\d+),(\d+\.?\d*).*')
             result = pattern.findall(line)
             if result:
                 result = result[0]

@@ -30,8 +30,8 @@ if __name__ == '__main__':
         for line in input_file:
             # 匹配如下内容：
             # Hybrid,37,28.255528,18.100493,8,14,11,4,4,0,0,0,0.200000,3.056799
-            pattern = re.compile(r'.*,(\d+),(\d+.\d+),(\d+.\d+),(\d+),(\d+),'
-                                 r'(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+.\d+),(\d+\.?\d*).*')
+            pattern = re.compile(r'.*,(\d+),(\d+\.\d+),(\d+\.\d+),(\d+),(\d+),'
+                                 r'(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+\.\d+),(\d+\.?\d*).*')
             result = pattern.findall(line)
             if result:
                 result = result[0]

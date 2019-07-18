@@ -28,7 +28,7 @@ if __name__ == '__main__':
         for line in input_file:
             # 匹配如下内容：
             # SC,27,33.800477,24.314833,8,18,16,4,0.200000,0,,,,
-            pattern = re.compile(r'.*,(\d+),(\d+.\d+),(\d+.\d+),(\d+),(\d+),(\d+),(\d+),(\d+.\d+),(\d+\.?\d*).*')
+            pattern = re.compile(r'.*,(\d+),(\d+\.\d+),(\d+\.\d+),(\d+),(\d+),(\d+),(\d+),(\d+\.\d+),(\d+\.?\d*).*')
             result = pattern.findall(line)
             if result:
                 result = result[0]

@@ -47,12 +47,12 @@ if __name__ == '__main__':
                 # T_budget(alpha): 45.000000 (1.666667); T_optimal(beta): 36.000000 (1.333333);
                 # Exploration_rate: 0.100000; Preference: 1.000000; View_radius: 1.000000
                 pattern = re.compile(r'.*MainFunc.*Iteration:.*; Configuration: grid: (\d+), '
-                                     r'safety_threshold: (\d+.\d+), privacy_threshold: (\d+.\d+), '
+                                     r'safety_threshold: (\d+\.\d+), privacy_threshold: (\d+\.\d+), '
                                      r'the starting point: \[(\d+), (\d+), (\d+)\]; '
                                      r'the end point: \[(\d+), (\d+), (\d+)\]; '
-                                     r'T_budget\(alpha\): (\d+.\d+) .*; T_optimal\(beta\): (\d+.\d+).*; '
-                                     r'Exploration_rate: (\d+.\d+); '
-                                     r'Preference: (\d+.\d+); View_radius: (\d+.\d+).*')
+                                     r'T_budget\(alpha\): (\d+\.\d+) .*; T_optimal\(beta\): (\d+\.\d+).*; '
+                                     r'Exploration_rate: (\d+\.\d+); '
+                                     r'Preference: (\d+\.\d+); View_radius: (\d+\.\d+).*')
                 result = pattern.findall(line)
                 if result:
                     # 获得结果
@@ -121,7 +121,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:09,929] HybridPlanning_SA.py->Astar_Hybrid_Planning_online line:545
                 # [INFO]Online_Hybrid_Planning: Sum of privacy threat of replanned trajectory(occ_grid): 28.255528
                 pattern = re.compile(r'.*HybridPlanning.*Online_Hybrid_Planning: '
-                                     r'Sum of privacy threat of replanned trajectory\(occ_grid\): (\d+.\d+),*')
+                                     r'Sum of privacy threat of replanned trajectory\(occ_grid\): (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     privacy_sum = result[0]
@@ -130,7 +130,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:09,929] HybridPlanning_SA.py->Astar_Hybrid_Planning_online line:546
                 # [INFO]Online_Hybrid_Planning: Sum of privacy threat of replanned trajectory(occ_grid_known): 18.100493
                 pattern = re.compile(r'.*HybridPlanning.*Online_Hybrid_Planning: '
-                                     r'Sum of privacy threat of replanned trajectory\(occ_grid_known\): (\d+.\d+),*')
+                                     r'Sum of privacy threat of replanned trajectory\(occ_grid_known\): (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     privacy_sum_known = result[0]
@@ -175,7 +175,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:09,937] HybridPlanning_SA.py->Astar_Hybrid_Planning_online line:589
                 # [INFO]Online_Hybrid_Planning: Sum of privacy threat of preplanned trajectory(occ_grid): 39.713011
                 pattern = re.compile(r'.*HybridPlanning.*Online_Hybrid_Planning: '
-                                     r'Sum of privacy threat of preplanned trajectory\(occ_grid\): (\d+.\d+),*')
+                                     r'Sum of privacy threat of preplanned trajectory\(occ_grid\): (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     REF_privacy_sum = result[0]
@@ -185,7 +185,7 @@ if __name__ == '__main__':
                 # [INFO]Online_Hybrid_Planning:
                 # Sum of privacy threat of preplanned trajectory(occ_grid_known): 29.882827
                 pattern = re.compile(r'.*HybridPlanning.*Online_Hybrid_Planning: '
-                                     r'Sum of privacy threat of preplanned trajectory\(occ_grid_known\): (\d+.\d+),*')
+                                     r'Sum of privacy threat of preplanned trajectory\(occ_grid_known\): (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     REF_privacy_sum_known = result[0]
@@ -248,7 +248,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:09,946] HybridPlanning_SA.py->Astar_Hybrid_Planning_online line:646
                 # [INFO]Online_Hybrid_Planning: Exploration rate: 0.200000
                 pattern = re.compile(r'.*HybridPlanning.*Online_Hybrid_Planning: '
-                                     r'Exploration rate: (\d+.\d+),*')
+                                     r'Exploration rate: (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     exploration_rate = result[0]
@@ -305,7 +305,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:10,109] SensorConfigOnline.py->Astar_Sensor_Config_online line:222
                 # [INFO]Online_Sensor_Config: Sum of privacy threat of replanned trajectory(occ_grid): 33.800477
                 pattern = re.compile(r'.*SensorConfigOnline.py.*Online_Sensor_Config: '
-                                     r'Sum of privacy threat of replanned trajectory\(occ_grid\): (\d+.\d+),*')
+                                     r'Sum of privacy threat of replanned trajectory\(occ_grid\): (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     privacy_sum = result[0]
@@ -314,7 +314,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:10,109] SensorConfigOnline.py->Astar_Sensor_Config_online line:223
                 # [INFO]Online_Sensor_Config: Sum of privacy threat of replanned trajectory(occ_grid_known): 24.314833
                 pattern = re.compile(r'.*SensorConfigOnline.py.*Online_Sensor_Config: '
-                                     r'Sum of privacy threat of replanned trajectory\(occ_grid_known\): (\d+.\d+),*')
+                                     r'Sum of privacy threat of replanned trajectory\(occ_grid_known\): (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     privacy_sum_known = result[0]
@@ -368,7 +368,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:10,118] SensorConfigOnline.py->Astar_Sensor_Config_online line:270
                 # [INFO]Online_Sensor_Config: Sum of privacy threat of preplanned trajectory(occ_grid_known): 29.882827
                 pattern = re.compile(r'.*SensorConfigOnline.py.*Online_Sensor_Config: '
-                                     r'Sum of privacy threat of preplanned trajectory(occ_grid_known): (\d+.\d+),*')
+                                     r'Sum of privacy threat of preplanned trajectory(occ_grid_known): (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     REF_privacy_sum_known = result[0]
@@ -422,7 +422,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:10,123] SensorConfigOnline.py->Astar_Sensor_Config_online line:324
                 # [INFO]Online_Sensor_Config: Exploration rate: 0.200000
                 pattern = re.compile(r'.*SensorConfigOnline.py.*Online_Sensor_Config: '
-                                     r'Exploration rate: (\d+.\d+),*')
+                                     r'Exploration rate: (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     exploration_rate = result[0]
@@ -489,7 +489,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:11,205] PathPlanningOnline.py->Astar_Path_Planning_online line:340
                 # [INFO]Online_Path_Planning: Sum of privacy threat of replanned trajectory(occ_grid): 33.111192
                 pattern = re.compile(r'.*PathPlanningOnline.py.*Online_Path_Planning: '
-                                     r'Sum of privacy threat of replanned trajectory\(occ_grid\): (\d+.\d+),*')
+                                     r'Sum of privacy threat of replanned trajectory\(occ_grid\): (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     privacy_sum = result[0]
@@ -498,7 +498,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:11,205] PathPlanningOnline.py->Astar_Path_Planning_online line:341
                 # [INFO]Online_Path_Planning: Sum of privacy threat of replanned trajectory(occ_grid_known): 27.264731
                 pattern = re.compile(r'.*PathPlanningOnline.py.*Online_Path_Planning: '
-                                     r'Sum of privacy threat of replanned trajectory\(occ_grid_known\): (\d+.\d+),*')
+                                     r'Sum of privacy threat of replanned trajectory\(occ_grid_known\): (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     privacy_sum_known = result[0]
@@ -543,7 +543,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:11,213] PathPlanningOnline.py->Astar_Path_Planning_online line:387
                 # [INFO]Online_Path_Planning: Sum of privacy threat of preplanned trajectory(occ_grid): 39.713011
                 pattern = re.compile(r'.*PathPlanningOnline.py.*Online_Path_Planning: '
-                                     r'Sum of privacy threat of preplanned trajectory\(occ_grid\): (\d+.\d+),*')
+                                     r'Sum of privacy threat of preplanned trajectory\(occ_grid\): (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     REF_privacy_sum = result[0]
@@ -552,7 +552,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:11,213] PathPlanningOnline.py->Astar_Path_Planning_online line:388
                 # [INFO]Online_Path_Planning: Sum of privacy threat of preplanned trajectory(occ_grid_known): 33.866551
                 pattern = re.compile(r'.*PathPlanningOnline.py.*Online_Path_Planning: '
-                                     r'Sum of privacy threat of preplanned trajectory\(occ_grid_known\): (\d+.\d+),*')
+                                     r'Sum of privacy threat of preplanned trajectory\(occ_grid_known\): (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     REF_privacy_sum_known = result[0]
@@ -615,7 +615,7 @@ if __name__ == '__main__':
                 # [2019-07-17 20:40:11,221] PathPlanningOnline.py->Astar_Path_Planning_online line:443
                 # [INFO]Online_Path_Planning: Exploration rate: 0.220000
                 pattern = re.compile(r'.*PathPlanningOnline.py.*Online_Path_Planning: '
-                                     r'Exploration rate: (\d+.\d+),*')
+                                     r'Exploration rate: (\d+\.\d+),*')
                 result = pattern.findall(line)
                 if result:
                     exploration_rate = result[0]
