@@ -13,9 +13,10 @@ class Record(object):
         times_of_intrusion_known: 侵犯已知隐私的数量
         times_of_replanning: 重规划的数量
         exploration_rate: 探索率
+        execution_time: 执行时间
     """
     def __init__(self, length, PR, PR_known, times_of_turning_off_camera, times_of_intrusion, times_of_intrusion_known,
-                 times_of_replanning, exploration_rate):
+                 times_of_replanning, exploration_rate, execution_time):
         self.length = length
         self.PR = PR
         self.PR_known = PR_known
@@ -24,9 +25,10 @@ class Record(object):
         self.times_of_intrusion_known = times_of_intrusion_known
         self.times_of_replanning = times_of_replanning
         self.exploration_rate = exploration_rate
+        self.execution_time = execution_time
 
     def __str__(self):
         return (str(self.length) + ', ' + str(self.PR) + ', ' + str(self.PR_known) + ', ' +
                 str(self.times_of_replanning) + ', ' + str(self.times_of_intrusion) + ', ' +
                 str(self.times_of_intrusion_known) + ', ' + str(self.times_of_replanning) + ', ' +
-                str(self.exploration_rate))
+                str(self.exploration_rate) + ', ' + str(self.execution_time))

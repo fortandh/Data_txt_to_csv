@@ -16,11 +16,13 @@ if __name__ == '__main__':
             open(pp_csv_file_name, "w") as output_pp_file, \
             open(sc_csv_file_name, "w") as output_sc_file:
         output_hybrid_file.write(",Length,PR,PR_known,turn off camera,Intrusion,Intrusion_known,replan times,"
-                                 "No solution times,flag 1 times,flag 2 times,flag 3 times,exploration rate\n")
+                                 "No solution times,flag 1 times,flag 2 times,flag 3 times,exploration rate,"
+                                 "execution time\n")
         output_sc_file.write(",Length,PR,PR_known,turn off camera,Intrusion,Intrusion_known,"
-                             "replan times,exploration rate,,,,\n")
+                             "replan times,exploration rate,execution time,,,,\n")
         output_pp_file.write(",Length,PR,PR_known,turn off camera,Intrusion,Intrusion_known,replan times,"
-                             "No solution times,flag 1 times,flag 2 times,flag 3 times,exploration rate\n")
+                             "No solution times,flag 1 times,flag 2 times,flag 3 times,exploration rate,"
+                             "execution time\n")
         for line in input_csv_file:
             # 处理Hybrid行
             pattern = re.compile(r'Hybrid.*')

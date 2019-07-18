@@ -22,22 +22,23 @@ if __name__ == '__main__':
         if command_mode == "test":
             print(",Length,PR,PR_known,turn off camera,Intrusion,Intrusion_known,replan times,"
                   "No solution times,flag 1 times,flag 2 times,flag 3 times,exploration rate,"
-                  "failure rate")
+                  "failure rate,execution time")
         else:
             output_file.write(",Length,PR,PR_known,turn off camera,Intrusion,Intrusion_known,replan times,"
                               "No solution times,flag 1 times,flag 2 times,flag 3 times,exploration rate,"
-                              "failure rate\n")
+                              "failure rate,execution time\n")
         for line in input_file:
             # 匹配如下内容：
-            # Hybrid,27,145.777165,145.777165,5,12,12,3,0,4,0,0,0.220000
+            # Hybrid,37,28.255528,18.100493,8,14,11,4,4,0,0,0,0.200000,3.056799
             pattern = re.compile(r'.*,(\d+),(\d+.\d+),(\d+.\d+),(\d+),(\d+),'
-                                 r'(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+.\d+).*')
+                                 r'(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+.\d+),(\d+\.?\d*).*')
             result = pattern.findall(line)
             if result:
                 result = result[0]
                 tmp_record = Hybrid_Record(int(result[0]), float(result[1]), float(result[2]), int(result[3]),
                                            int(result[4]), int(result[5]), int(result[6]), int(result[7]),
-                                           int(result[8]), int(result[9]), int(result[10]), float(result[11]))
+                                           int(result[8]), int(result[9]), int(result[10]), float(result[11]),
+                                           float(result[12]))
                 record_list.append(tmp_record)
 
                 if len(record_list) == group_size:
@@ -54,6 +55,7 @@ if __name__ == '__main__':
                     times_of_flag_3_average = 0
                     exploration_rate_average = 0
                     failure_rate_average = 0
+                    execution_time_average = 0
 
                     for i in range(len(record_list)):
                         length_average += record_list[i].length
@@ -69,6 +71,7 @@ if __name__ == '__main__':
                         times_of_flag_3_average += record_list[i].times_of_flag_3
                         exploration_rate_average += record_list[i].exploration_rate
                         failure_rate_average += record_list[i].failure_rate
+                        execution_time_average += record_list[i].execution_time
 
                     length_average /= group_size
                     PR_average /= group_size
@@ -83,29 +86,32 @@ if __name__ == '__main__':
                     times_of_flag_3_average /= group_size
                     exploration_rate_average /= group_size
                     failure_rate_average /= group_size
+                    execution_time_average /= group_size
 
                     if command_mode == "test":
                         print("Average,{},{},{},{},{},"
-                              "{},{},{},{},{},{},{},{}".format(length_average, PR_average, PR_known_average,
-                                                               times_of_turning_off_camera_average,
-                                                               times_of_intrusion_average,
-                                                               times_of_intrusion_known_average,
-                                                               times_of_replanning_average,
-                                                               times_of_no_solution_average, times_of_flag_1_average,
-                                                               times_of_flag_2_average, times_of_flag_3_average,
-                                                               exploration_rate_average, failure_rate_average))
+                              "{},{},{},{},{},{},{},{},{}".format(length_average, PR_average, PR_known_average,
+                                                                  times_of_turning_off_camera_average,
+                                                                  times_of_intrusion_average,
+                                                                  times_of_intrusion_known_average,
+                                                                  times_of_replanning_average,
+                                                                  times_of_no_solution_average, times_of_flag_1_average,
+                                                                  times_of_flag_2_average, times_of_flag_3_average,
+                                                                  exploration_rate_average, failure_rate_average,
+                                                                  execution_time_average))
                     else:
-                        output_file.write("Average,{},{},{},{},{},{},"
-                                          "{},{},{},{},{},{},{}\n".format(length_average, PR_average, PR_known_average,
-                                                                          times_of_turning_off_camera_average,
-                                                                          times_of_intrusion_average,
-                                                                          times_of_intrusion_known_average,
-                                                                          times_of_replanning_average,
-                                                                          times_of_no_solution_average,
-                                                                          times_of_flag_1_average,
-                                                                          times_of_flag_2_average,
-                                                                          times_of_flag_3_average,
-                                                                          exploration_rate_average,
-                                                                          failure_rate_average))
+                        output_file.write("Average,{},{},{},{},{},{},{},{},{},{},"
+                                          "{},{},{},{}\n".format(length_average, PR_average, PR_known_average,
+                                                                 times_of_turning_off_camera_average,
+                                                                 times_of_intrusion_average,
+                                                                 times_of_intrusion_known_average,
+                                                                 times_of_replanning_average,
+                                                                 times_of_no_solution_average,
+                                                                 times_of_flag_1_average,
+                                                                 times_of_flag_2_average,
+                                                                 times_of_flag_3_average,
+                                                                 exploration_rate_average,
+                                                                 failure_rate_average,
+                                                                 execution_time_average))
                     record_list = []
         print("Hybrid average process finished.")
